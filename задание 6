@@ -1,41 +1,45 @@
+/* Поместить элементы массива X в начало массива Y в обратном порядке, исключив элементы,
+превосходящие по абсолютной величине вводимое значение R. 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
     int n, R;
-    printf("请输入数组X的大小: ");
+    printf("Введите размер массива X: ");
     scanf("%d", &n);
 
-    int* X = (int*)malloc(n * sizeof(int)); 
-    int* Y = (int*)malloc(n * sizeof(int)); 
+    int* X = (int*)malloc(n * sizeof(int));
+    int* Y = (int*)malloc(n * sizeof(int));
 
 
-    printf("请输入数组X的元素:\n");
+    printf("Введите элементы массива X:\n");
     for (int i = 0; i < n; i++) {
-        scanf("%d", &X[i]); 
+        scanf("%d", &X[i]);
     }
 
-    printf("请输入R的值: ");
+    printf("Введите значение R:: ");
     scanf("%d", &R);
 
-    int yIndex = 0; 
+    int yn = 0;
 
 
     for (int i = n - 1; i >= 0; i--) {
 
         if (abs(X[i]) <= R) {
-            Y[yIndex] = X[i]; 
-            yIndex++; 
+            Y[yn] = X[i];
+            yn++;
         }
     }
 
-    printf("得到的数组Y的元素（逆序）:\n");
-    for (int i = 0; i < yIndex; i++) {
+    printf("Элементы массива Y (в обратном порядке):\n");
+    for (int i = 0; i < yn; i++) {
         printf("%d ", Y[i]);
     }
     printf("\n");
 
-    free(X); 
+    free(X);
     free(Y);
 
     return 0;
