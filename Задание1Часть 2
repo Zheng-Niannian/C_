@@ -1,0 +1,40 @@
+В задании: 
+ - вводимые и выводимые данные сопровождать краткими поясняющими текстами,
+ - для проверки численных значений результатов предусмотреть в программе соответствующие вычисления:
+Вычислить площадь S остроугольного треугольника, заданного координатами вершин на плоскости,
+по формуле Герона S = √(p·(p - a)·(p - b)·(p - c)), p=(a+b+c)/2, 
+а затем – величины углов, используя соотношение S=a*b*sinC/2, 
+где С – угол между сторонами с длинами a и b, а также, для проверки результатов, вычислить сумму углов. 
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+double calculateS(double a, double b, double c) {
+    double p = (a + b + c) / 2;
+    double S = sqrt(p * (p - a) * (p - b) * (p - c));
+    return S;
+}
+
+double calculateAngleSum(double a, double b, double C) {
+    double angleSum = a * b * sin(C) / 2;
+    return angleSum;
+}
+
+int main() {
+    double a = 3;
+    double b = 4;
+    double C = 1.047; //Значение радиана, соответствующее 60 градусам
+
+    double S = calculateS(a, b, C);
+    double angleSum = calculateAngleSum(a, b, C);
+
+    printf(" a = %.2f\n", a);
+    printf(" b = %.2f\n", b);
+    printf("C = %.2f \n", C);
+    printf("S = v(p * (p - a) * (p - b) * (p - c)) ， S = %.2f\n", S);
+    printf(" S = a * b * sin(C) / 2 ， S = %.2f\n", angleSum);
+
+    return 0;
+}
