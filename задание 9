@@ -1,0 +1,54 @@
+/*
+Вычислить среднее арифметическое элементов массива D(n), n≤25, 
+без учета максимального и минимального элементов.
+Вывести массив, среднее, наибольший и наименьший элементы.
+*/
+
+#include <stdio.h>
+
+#define MAX 25
+
+int main() {
+    int n;
+    int D[MAX];
+
+    printf("Введите количество элементов (n) (не более %d): ", MAX);
+    scanf("%d", &n);
+    if (n > MAX || n <= 0) {
+        printf("Ошибка: недопустимое количество элементов.\n");
+        return 1;
+    }
+
+    printf("Введите %d элементов массива D:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &D[i]);
+    }
+
+
+    int min = D[0];
+    int max = D[0];
+    int sum = D[0];
+
+    for (int i = 1; i < n; i++) {
+        if (D[i] < min) {
+            min = D[i];
+        }
+        if (D[i] > max) {
+            max = D[i];
+        }
+        sum += D[i];
+    }
+
+    double average = (double)(sum - min - max) / (n - 2);
+    printf("Массив D: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", D[i]);
+    }
+    printf("\n");
+
+    printf("Среднее арифметическое без учета минимального и максимального элементов: %.2lf\n", average);
+    printf("Наибольший элемент: %d\n", max);
+    printf("Наименьший элемент: %d\n", min);
+
+    return 0;
+}
