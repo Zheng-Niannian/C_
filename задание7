@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    double x, y;
+    printf("Введите начальный пробег спортсмена (x): ");
+    scanf("%lf", &x);
+    printf("Введите цель пробега спортсмена (y): ");
+    scanf("%lf", &y);
+
+    double health_increase_percentage = 0.05; // Здоровье увеличивается на 0.05% за каждый километр
+
+    int days = 1; // Номер текущего дня
+    double total_distance = x; // Общий пробег спортсмена
+
+    while (total_distance < y) {
+        x *= 1.10; // Увеличиваем пробег на 10% каждый день
+        total_distance += x; // Обновляем общий пробег
+        days++; // Увеличиваем счетчик дней
+    }
+
+    double health_increase = total_distance * health_increase_percentage;
+
+    printf("Спортсмен достигнет цели на %d-й день.\n", days);
+    printf("Здоровье спортсмена увеличится на %.2lf%%.\n", health_increase);
+
+    return 0;
+}
