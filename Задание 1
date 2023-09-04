@@ -1,0 +1,32 @@
+В задании: 
+- вычислить, упростив за счет использования скобочных форм и/или дополнительных переменных, значения по заданным формулам;
+- для контроля правильности результатов выполнить вычисления по формулам без использования скобочных форм и дополнительных переменных,
+ - проверить результаты на комбинациях заданных значений.
+B = sin(A); C = log10(A);D = exp(A);E = |A|；
+S = (A + B) * (A + B + C) * (A + B + C + D) * (A + B + C + D + E)；
+A= （8, -2, 4, -5 ）
+
+
+#include <stdio.h>
+#include <math.h>
+
+double calculateS(double A) {
+    double B = sin(A);p
+    double C = log10(A);
+    double D = exp(A);
+    double E = fabs(A);
+    double S = (A + B) * (A + B + C) * (A + B + C + D) * (A + B + C + D + E);
+    return S;
+}
+
+int main() {
+    double A[] = { 8, -2, 4, -5 };
+    int size = sizeof(A) / sizeof(A[0]);
+
+    for (int i = 0; i < size; i++) {
+        double result = calculateS(A[i]);
+        printf("A=%.2f, S=%.2f\n", A[i], result);
+    }
+
+    return 0;
+}
