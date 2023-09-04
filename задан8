@@ -1,0 +1,68 @@
+/*
+Найти наибольшее и наименьшее значения и их индексы в массиве D(n), n≤25. Наименьший элемент заменить суммой предшествующих элементов,
+а наибольший - произведением последующих.
+Вывести массив, наименьшее, наибольшее значения, их индексы, сумму и произведение. 
+*/
+
+#include <stdio.h>
+
+#define MAX 25
+
+int main() {
+    int n;
+    int D[MAX];
+    printf("Введите количество элементов (n) (не более %d): ", MAX);
+    scanf("%d", &n);
+
+    if (n > MAX|| n <= 0) {
+        printf("Ошибка: недопустимое количество элементов.\n");
+        return 1;
+    }
+
+    printf("Введите %d элементов массива D:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &D[i]);
+    }
+
+    int min = D[0];
+    int minIndex = 0;
+    int max = D[0];
+    int maxIndex = 0;
+
+    for (int i = 1; i < n; i++) {
+        if (D[i] < min) {
+            min = D[i];
+            minIndex = i;
+        }
+        if (D[i] > max) {
+            max = D[i];
+            maxIndex = i;
+        }
+    }
+
+    int sum = 0;
+    for (int i = 0; i < minIndex; i++) {
+        sum += D[i];
+    }
+
+    int product = 1;
+    for (int i = maxIndex + 1; i < n; i++) {
+        product *= D[i];
+    }
+
+    D[minIndex] = sum;
+    D[maxIndex] = product;
+
+    printf("Массив D после замены:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", D[i]);
+    }
+    printf("\n");
+
+    printf("Наименьший элемент: %d (индекс %d)\n", min, minIndex);
+    printf("Наибольший элемент: %d (индекс %d)\n", max, maxIndex);
+    printf("Сумма предшествующих элементов: %d\n", sum);
+    printf("Произведение последующих элементов: %d\n", product);
+
+    return 0;
+}
