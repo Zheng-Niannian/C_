@@ -1,0 +1,62 @@
+/*  Удалить из матрицы B(m,n), m≤10, n≤8 строки, содержащие отрицательные элементы.*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int m, n;
+
+    // Запрос размеров матрицы
+    printf("Введите количество строк матрицы: ");
+    scanf("%d", &m);
+    printf("Введите количество столбцов матрицы: ");
+    scanf("%d", &n);
+
+    int** matrix = (int**)malloc(m * sizeof(int*));
+    for (int i = 0; i < m; i++) {
+        matrix[i] = (int*)malloc(n * sizeof(int));
+    }
+    // Ввод матрицы
+    printf("Введите элементы матрицы:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Удаление строк с отрицательными элементами
+    int d_m = 0;  // Новое количество строк после удаления
+    for (int i = 0; i < m; i++) {
+        int has_negative = 0;  // Флаг наличия отрицательных элементов в строке
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] < 0) {
+                has_negative = 1;
+                break;
+            }
+        }
+        if (!has_negative) {
+            // Сохраняем строку, так как она не содержит отрицательных элементов
+            for (int j = 0; j < n; j++) {
+                matrix[d_m][j] = matrix[i][j];
+            }
+            d_m++;
+        }
+    }
+
+    // Вывод измененной матрицы
+    printf("Матрица после удаления строк с отрицательными элементами:\n");
+    for (int i = 0; i < d_m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < m; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+
+    return 0;
+}
