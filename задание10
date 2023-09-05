@@ -1,0 +1,73 @@
+/*
+Осуществить ввод и вывод матрицы,
+вычисление суммы и произведения матрицы,
+а также вычисление максимального и минимального элементов матрицы.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int m, n;
+
+    // Запрос размеров матрицы
+    printf("Введите количество строк матрицы: ");
+    scanf("%d", &m);
+    printf("Введите количество столбцов матрицы: ");
+    scanf("%d", &n);
+
+    int** matrix = (int**)malloc(m * sizeof(int*));
+    for (int i = 0; i < m; i++) {
+        matrix[i] = (int*)malloc(n * sizeof(int));
+    }
+
+    // Ввод матрицы
+    printf("Введите элементы матрицы:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Вывод матрицы
+    printf("Матрица:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Вычисление суммы и произведения матрицы
+    int sum = 0;
+    int product = 1;
+    int min = matrix[0][0];
+    int max = matrix[0][0];
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            sum += matrix[i][j];
+            product *= matrix[i][j];
+            if (matrix[i][j] < min) {
+                min = matrix[i][j];
+            }
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+
+    printf("Сумма элементов матрицы: %d\n", sum);
+    printf("Произведение элементов матрицы: %d\n", product);
+    printf("Минимальный элемент матрицы: %d\n", min);
+    printf("Максимальный элемент матрицы: %d\n", max);
+
+    // Освобождение выделенной памяти
+    for (int i = 0; i < m; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+
+    return 0;
+}
